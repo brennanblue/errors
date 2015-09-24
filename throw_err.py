@@ -4,6 +4,7 @@
 # user-supplied command line argument
 
 import sys
+import os
 
 def print_usage():
     """Print usage and exit"""
@@ -14,6 +15,10 @@ def print_usage():
     sys.stderr.write("\tzerodivision\n")
     sys.exit()
 
+def contains(char_string, char):
+# adjust returned index to account for searching in reverse
+    return len(char_string) - char_string[::-1].index(char) - 1
+
 # Check args
 if len(sys.argv) != 2:
     print_usage()
@@ -21,25 +26,48 @@ if len(sys.argv) != 2:
 error_type = sys.argv[1]
 
 if error_type == "assertion":
-    raise AssertionError
+# raise AssertionError
+   # try:
+        assert 1==2
+   # except AssertionError:
+        print 'not likely'
+#	exit(1)	
 elif error_type == "io":
-    raise IOError
+  #  raise IOError
+    file = open('nothere.txt')
+    print file
 elif error_type == "import":
-    raise ImportError
+    import os
+    os.chdir ("fail")
+    #  from error import testest_foo.py
+    #  raise ImportError
 elif error_type == "index":
-    raise IndexError
+    dog = 'dixie'
+    a = adict.get('heela', dog)
+    # raise IndexError
 elif error_type == "key":
-    raise KeyError
+    array = {a: 'duck', b: 'duck'}
+    print array['c']
+	#  raise KeyError
 elif error_type == "name":
-    raise NameError
+    print what
+    #    raise NameError
 elif error_type == "os":
-    raise OSError
+    for i in range(9):
+        print n
+
+#    raise OSError
 elif error_type == "type":
-    raise TypeError
+    # raise TypeError
+    b = 'dog'
+    c = 'cat'
+    print (b / c)
 elif error_type == "value":
-    raise ValueError
+    # raise ValueError
+    contains ('atgcaggtacaba', 'k')
 elif error_type == "zerodivision":
-    raise ZeroDivisionError
+    print 3.1415926/0
+    # raise ZeroDivisionError
 else:
     sys.stderr.write("Sorry, not able to throw a(n) ")
     sys.stderr.write(error_type + " error\n")
