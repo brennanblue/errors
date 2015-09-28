@@ -6,13 +6,18 @@
 import sys
 import os
 
+class newerror(Exception):
+    def __init__(self, arg):
+        self.msg = arg
+    #new error type, should return its arguments
+
 def print_usage():
     """Print usage and exit"""
     sys.stderr.write("usage: python raise_err.py <error type>\n")
     sys.stderr.write("available errors: \n")
     sys.stderr.write("\tassertion, io, import, index\n")
     sys.stderr.write("\tkey, name, os, type, value,\n")
-    sys.stderr.write("\tzerodivision\n")
+    sys.stderr.write("\tzerodivision, newerror\n")
     sys.exit()
 
 def contains(char_string, char):
@@ -69,6 +74,16 @@ elif error_type == "value":
 elif error_type == "zerodivision":
     print 3.1415926/0
     # raise ZeroDivisionError
+elif error_type == "newerror":
+#    raise newerror("look - custom error type")
+    try:
+# Raise an exception with argument
+        raise newerror('This is a new Error')
+    except newerror, arg:
+ # Catch the custom exception
+        print 'Error: ', arg.msg
+
+
 else:
     sys.stderr.write("Sorry, not able to throw a(n) ")
     sys.stderr.write(error_type + " error\n")
