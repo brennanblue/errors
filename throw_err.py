@@ -42,8 +42,9 @@ elif error_type == "import":
     #  from error import testest_foo.py
     #  raise ImportError
 elif error_type == "index":
-    dog = 'dixie'
-    a = adict.get('heela', dog)
+    # dogs = {0: 'racer', 1: 'dixie', 2: 'heela'}
+    dogs =[1,2]
+    a = dogs[3]
     # raise IndexError
 elif error_type == "key":
     array = {a: 'duck', b: 'duck'}
