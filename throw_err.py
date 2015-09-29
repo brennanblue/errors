@@ -5,30 +5,36 @@
 
 import sys
 import os
+import argparse
+
+parsified = argparse.ArgumentParser()
+parsified.add_argument("error_type")
+result = parsified.parse_args()
+error_type = result.error_type
 
 class newerror(Exception):
     def __init__(self, arg):
         self.msg = arg
     #new error type, should return its arguments
-
-def print_usage():
-    """Print usage and exit"""
-    sys.stderr.write("usage: python raise_err.py <error type>\n")
-    sys.stderr.write("available errors: \n")
-    sys.stderr.write("\tassertion, io, import, index\n")
-    sys.stderr.write("\tkey, name, os, type, value,\n")
-    sys.stderr.write("\tzerodivision, newerror\n")
-    sys.exit()
-
+#
+#def print_usage():
+#    """Print usage and exit"""
+#    sys.stderr.write("usage: python raise_err.py <error type>\n")
+#    sys.stderr.write("available errors: \n")
+#    sys.stderr.write("\tassertion, io, import, index\n")
+#    sys.stderr.write("\tkey, name, os, type, value,\n")
+#    sys.stderr.write("\tzerodivision, newerror\n")
+#    sys.exit()
+#
 def contains(char_string, char):
 # adjust returned index to account for searching in reverse
     return len(char_string) - char_string[::-1].index(char) - 1
 
 # Check args
-if len(sys.argv) != 2:
-    print_usage()
-
-error_type = sys.argv[1]
+# if len(sys.argv) != 2:
+#    print_usage()
+#
+# error_type = sys.argv[1]
 
 if error_type == "assertion":
 # raise AssertionError
